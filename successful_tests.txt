@@ -1,0 +1,109 @@
+CustomerList:
+GET: http://127.0.0.1:8000/customers/
+POST: {"email_id":"customer@email.com","username":"username"}
+POST: {"email_id":"customer2@email.com","username":"username2"}
+POST: {"email_id":"customer3@email.com","username":"username3"}
+
+CustomerInd:
+GET: http://127.0.0.1:8000/customers/customer@email.com/
+PUT: {"email_id":"newcustomer@email.com"}
+GET: http://127.0.0.1:8000/customers/newcustomer@email.com/
+PUT: {"username":"newusername"}
+DELETE: ---
+
+GET: http://127.0.0.1:8000/customers/customer2@email.com/
+PUT: {"email_id":"newcustomer2@email.com"}
+GET: http://127.0.0.1:8000/customers/newcustomer2@email.com/
+PUT: {"username":"newusername2"}
+DELETE: ---
+
+VendorList:
+GET: http://127.0.0.1:8000/vendors/
+POST: {"vendor_email":"vendor@email.com", "vendor_name": "vendor"}
+POST: {"vendor_email":"vendor2@email.com", "vendor_name": "vendor2"}
+
+VendorInd:
+GET: http://127.0.0.1:8000/vendors/vendor@email.com/
+PUT: {"vendor_email":"newvendor@email.com"}
+GET: http://127.0.0.1:8000/vendors/newvendor@email.com/
+PUT: {"vendor_name": "newvendor"}
+PUT: {"vendor_email":"newvendor@email.com", "vendor_name": "newvendor"}
+DELETE: ---
+
+GET: http://127.0.0.1:8000/vendors/vendor2@email.com/
+PUT: {"vendor_email":"newvendor2@email.com"}
+GET: http://127.0.0.1:8000/vendors/newvendor2@email.com/
+DELETE: ---
+
+VendorProductList:
+GET: http://127.0.0.1:8000/vendorproducts/
+POST: {"vendor_email": "newvendor@email.com", "prod_name": "product", "unit_cost": 3.99, "quantity": 35}
+POST: {"vendor_email": "newvendor2@email.com", "prod_name": "product", "unit_cost": 3.00, "quantity": 42}
+
+POST: {"vendor_email": "newvendor@email.com", "prod_name": "product2", "unit_cost": 6.95, "quantity": 12}
+POST: {"vendor_email": "newvendor2@email.com", "prod_name": "product2", "unit_cost": 9.00, "quantity": 7}
+
+POST: {"vendor_email": "newvendor@email.com", "prod_name": "product3", "unit_cost": 99.99, "quantity": 5}
+POST: {"vendor_email": "newvendor2@email.com", "prod_name": "product3", "unit_cost": 95.50, "quantity": 2}
+
+POST: {"vendor_email": "newvendor@email.com", "prod_name": "product4a", "unit_cost": 20.00, "quantity": 20}
+POST: {"vendor_email": "newvendor2@email.com", "prod_name": "product4b", "unit_cost": 0.99, "quantity": 70}
+
+VendorProductInd:
+GET: http://127.0.0.1:8000/vendorproducts/newvendor@email.com/product/
+PUT: {"prod_id": "product", "vendor_id": "newvendor@email.com", "unit_cost": "5.99", "quantity_left": 40}
+PUT: {"unit_cost": "2.99", "quantity_left": 20}
+PUT: {"quantity_left": 12}
+DELETE: ---
+
+GET: http://127.0.0.1:8000/vendorproducts/newvendor2@email.com/product3/
+PUT: {"prod_id": "product", "vendor_id": "newvendor2@email.com", "unit_cost": "98.70", "quantity_left": 4}
+PUT: {"unit_cost": "102.99", "quantity_left": 1}
+DELETE: ---
+
+ProductList:
+GET: http://127.0.0.1:8000/products/
+
+ProductInd:
+GET: http://127.0.0.1:8000/products/product/
+GET: http://127.0.0.1:8000/products/product4/ (should retrieve a list)
+
+CartProductList:
+GET: http://127.0.0.1:8000/cartproducts/
+POST: {"cust_email":"newcustomer@email.com", "vendor_email":"newvendor@email.com", "prod_name":"product", "quantity_wanted":4}
+POST: {"cust_email":"newcustomer@email.com", "vendor_email":"newvendor2@email.com", "prod_name":"product3", "quantity_wanted":1}
+POST: {"cust_email":"newcustomer@email.com", "vendor_email":"newvendor2@email.com", "prod_name":"product4b", "quantity_wanted":10}
+
+POST: {"cust_email":"newcustomer2@email.com", "vendor_email":"newvendor@email.com", "prod_name":"product", "quantity_wanted":10}
+POST: {"cust_email":"newcustomer2@email.com", "vendor_email":"newvendor@email.com", "prod_name":"product2", "quantity_wanted":5}
+
+POST: {"cust_email":"customer3@email.com", "vendor_email":"newvendor@email.com", "prod_name":"product", "quantity_wanted":6}
+POST: {"cust_email":"customer3@email.com", "vendor_email":"newvendor2@email.com", "prod_name":"product", "quantity_wanted":40}
+POST: {"cust_email":"customer3@email.com", "vendor_email":"newvendor@email.com", "prod_name":"product4a", "quantity_wanted":3}
+POST: {"cust_email":"customer3@email.com", "vendor_email":"newvendor2@email.com", "prod_name":"product4b", "quantity_wanted":1}
+
+
+CartProductInd:
+GET: http://127.0.0.1:8000/cartproducts/newcustomer@email.com/newvendor@email.com/product/
+PUT: {"quantity_wanted": 10}
+DELETE: ---
+
+GET: http://127.0.0.1:8000/cartproducts/newcustomer2@email.com/newvendor@email.com/product/
+PUT: {"quantity_wanted": 7}
+DELETE: ---
+
+GET: http://127.0.0.1:8000/cartproducts/customer3@email.com/newvendor@email.com/product/
+PUT: {"quantity_wanted": 7}
+GET: http://127.0.0.1:8000/cartproducts/customer3@email.com/newvendor2@email.com/product/
+PUT: {"quantity_wanted": 12}
+DELETE: ---
+
+CartInd:
+GET: http://127.0.0.1:8000/carts/newcustomer@email.com/
+GET: http://127.0.0.1:8000/carts/newcustomer2@email.com/
+GET: http://127.0.0.1:8000/carts/customer3@email.com/
+
+
+----- this uri might be useless -----
+CartList:
+GET: http://127.0.0.1:8000/carts/
