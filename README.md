@@ -23,7 +23,7 @@ After setting up the tables in the database, we need to fill the tables with som
   python manage.py runserver
 ```
 
-and the base localhost address is going to be http://localhost.com/
+and the base localhost address is going to be http://localhost:8000/
 
 ### Setting Up Database
 Now that the database has been migrated, let's set up the tables by inserting some data into them. We'll be working exclusively with JSON type data, and the entries we will be entering can be found in the 'successful-tests.txt' file. While entering the data, order matters to an extent, as the relationships in some tables will not allow for an object of one type to be created while an object of another type does not exist. For this project, we should enter the Customer/Vendor data first, followed by VendorProduct data, and then finishing off with CartProduct data. 
